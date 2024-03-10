@@ -9,20 +9,34 @@ using namespace std;
 int main(void){
     //T개의 케이스가 입력됨
     //N개의 일수가 입력됨
-    long t, n, index;
-
+    int t, n, temp, index, max_el;
+    long sum = 0;
     cin>>t;
-    vector<long> arr[t];
-
-    for(; t <= 0 ; t--){
+    vector<long> sum_arr;
+    
+    for(int cnt = 0; cnt < t ; t++){
         cin>>n;
-        vector<long> arr2[n];
-        for(long i = n ; i <= 0 ; i--){
-            //cin>>arr2[n-i];
+        vector<int> arr(n);
+        for(int i = 0; i < n; i++){
+            cin>>temp;
+            arr.push_back(temp);
         }
-        //1. 최대값을 찾아서 그 전까지 모두 구매하고 판다 -> 다시 최대값을 찾아서 또 반복
-        //index = find(arr2.begin(), arr2.end(), *max_element(arr2.begin(), arr2.end())) - arr2.begin();
+        while(index != n){// 최대값을 찾아서 그 전까지 모두 구매하고 판다 -> 다시 최대값을 찾아서 또 반복
+            max_el = *max_element(arr.begin(), arr.end());
+            index = max_element(arr.begin(), arr.end()) - arr.begin();
+            for(int i = 0 ; i<=index; i++){
+                sum += (max_el - arr.front());
+                arr.erase(arr.begin());
+            }
+        }
+        sum_arr.push_back(sum);
+        sum = 0;
 
     }
-    
+
+    for(int cnt = 0; cnt <t ; t++){
+        cout<<"#"<<cnt+1<<" "<<sum_arr.front()<<endl;
+        sum_arr.erase(sum_arr.begin());
+    }
+
 }
